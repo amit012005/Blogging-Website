@@ -4,11 +4,13 @@ import AboutScreen from "./screens/AboutScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Dashboard from "./screens/Dashboard";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Header/>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/about" element={<AboutScreen />} />
