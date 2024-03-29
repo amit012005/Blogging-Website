@@ -5,12 +5,15 @@ import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
+import FooterC from "./components/FooterC";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Header />
+        <Toaster />
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/about" element={<AboutScreen />} />
@@ -18,6 +21,7 @@ function App() {
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+        <FooterC />
       </BrowserRouter>
     </>
   );

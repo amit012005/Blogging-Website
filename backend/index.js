@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import dotenv from "dotenv";
@@ -16,6 +17,7 @@ async function connectDB() {
 //Server starting
 const app = express();
 app.use(express.json());
+app.use(cors());
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);
