@@ -43,7 +43,7 @@ const LoginScreen = () => {
           }
         );
         // setLoading(false);
-        dispatch(signInSuccess(res));
+        dispatch(signInSuccess(res.data));
         toast.success("Welcome!");
         navigate("/home");
       } catch (error) {
