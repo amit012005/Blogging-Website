@@ -4,12 +4,21 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  signInFailure,
+  signInStart,
+  signInSuccess,
+} from "../redux/user/userSlice";
 const LoginScreen = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState(null);
+  // const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +27,9 @@ const LoginScreen = () => {
       console.log(email + password);
 
       try {
-        setLoading(true);
-        setErrorMessage(null);
+        // setLoading(true);
+        // setErrorMessage(null);
+        dispatch(signInStart());
         const res = await axios.post(
           "http://localhost:8080/api/auth/login",
           {
@@ -32,16 +42,19 @@ const LoginScreen = () => {
             },
           }
         );
-        setLoading(false);
+        // setLoading(false);
+        dispatch(signInSuccess(res));
         toast.success("Welcome!");
         navigate("/home");
       } catch (error) {
-        setLoading(false);
+        // setLoading(false);
         toast.error("Something went wrong");
-        return setErrorMessage("Wrong Credentials");
+        dispatch(signInFailure("Wrong Credentials"));
+        // return setErrorMessage("Wrong Credentials");
       }
     } else {
-      return setErrorMessage("Please fill out all fields");
+      // return setErrorMessage("Please fill out all fields");
+      return dispatch(signInFailure("Please fill out all the fields"));
       // console.log("Please fill all the details");
     }
   };
@@ -60,13 +73,12 @@ const LoginScreen = () => {
             Bounty
           </Link>
           <p className="text-sm mt-5">
-            This is a demo project. You can login with your email and
-            password or with Google.
+            This is a demo project. You can login with your email and password
+            or with Google.
           </p>
         </div>
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            
             <div>
               <Label value="Your Email" className="font-bold"></Label>
               <TextInput
