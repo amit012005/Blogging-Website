@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import OAuth from "../components/OAuth";
 const RegisterScreen = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -113,6 +114,7 @@ const RegisterScreen = () => {
               </>
               ):'Register' }
             </Button>
+            <OAuth/>
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span className="text-blue">Already have an account?</span>

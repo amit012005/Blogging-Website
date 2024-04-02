@@ -7,8 +7,10 @@ import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import FooterC from "./components/FooterC";
 import toast, { Toaster } from "react-hot-toast";
+// import dotenv from 'dotenv';
 
 function App() {
+  
   return (
     <>
       <BrowserRouter>
