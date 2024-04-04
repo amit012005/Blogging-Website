@@ -7,10 +7,10 @@ import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import FooterC from "./components/FooterC";
 import toast, { Toaster } from "react-hot-toast";
+import PrivateRoute from "./components/PrivateRoute";
 // import dotenv from 'dotenv';
 
 function App() {
-  
   return (
     <>
       <BrowserRouter>
@@ -21,7 +21,9 @@ function App() {
           <Route path="/about" element={<AboutScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
         <FooterC />
       </BrowserRouter>
