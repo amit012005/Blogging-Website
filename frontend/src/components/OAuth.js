@@ -3,7 +3,7 @@ import { Button } from "flowbite-react";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "../firebase";
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -35,7 +35,7 @@ const OAuth = () => {
       // setLoading(false);
       dispatch(signInSuccess(res.data));
       // toast.success(res.data);
-      navigate("/home");
+      navigate("/");
       // const res = await fetch("http://localhost:8080/api/auth/google", {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
