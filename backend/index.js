@@ -5,6 +5,7 @@ import authRoute from "./routes/authRoute.js";
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 //MONGODB Connection
 const url = process.env.MONGO_URI;
@@ -19,10 +20,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT;
+app.use(cookieParser());
+
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);
 });
-
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 

@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { errorHandler } from "../utils/error.js";
 async function registerUser(req, res, next) {
   const { username, email, password } = req.body;
+  console.log(req.body);
   // if (
   //   !username ||
   //   !email ||
