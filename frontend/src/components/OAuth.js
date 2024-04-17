@@ -33,19 +33,14 @@ const OAuth = () => {
         }
       );
       // setLoading(false);
+      const token = res.data.token;
+      // console.log(token);
+      localStorage.setItem("access_token", token);
+
       dispatch(signInSuccess(res.data));
       // toast.success(res.data);
       navigate("/");
-      // const res = await fetch("http://localhost:8080/api/auth/google", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     name: resultsFromGoogle.user.displayName,
-      //     email: resultsFromGoogle.user.email,
-      //     googlePhotoUrl: resultsFromGoogle.user.photoURL,
-      //   }),
-      // });
-      // const data = await res.json();
+      
     } catch (error) {
       console.log("Google sign in error", error);
     }

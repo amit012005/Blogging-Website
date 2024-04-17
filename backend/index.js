@@ -20,7 +20,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT;
-app.use(cookieParser());
+app.use(cookieParser())
 
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);

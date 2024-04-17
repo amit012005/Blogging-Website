@@ -43,19 +43,22 @@ async function loginUser(req, res, next) {
       return next(errorHandler(404, "User not found"));
     }
     const validPassword = bcryptjs.compareSync(password, validUser.password);
+    console.log(validPassword);
     if (!validPassword) {
       return next(errorHandler(400, "Invalid password"));
     }
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    console.log("token", token); // Log the token here
+
+    // console.log(res);
     const { password: pass, ...rest } = validUser._doc;
+    const responsePayload = { token, ...rest };
     res
       .status(200)
       .cookie("access_token", token, {
         httpOnly: true,
       })
-      .json(rest);
+      .json(responsePayload);
   } catch (error) {
     next(error);
   }
@@ -63,18 +66,20 @@ async function loginUser(req, res, next) {
 
 async function google(req, res, next) {
   const { email, name, googlePhotoUrl } = req.body;
+  console.log(req.body);
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET
-      );
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      // console.log(token);
       const { password, ...rest } = user._doc;
+      const responsePayload = { token, ...rest };
       res
         .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
         })
-        .json(rest);
+        .json(responsePayload);
     } else {
       const generatedPassword =
         Math.random().toString(36).slice(-8) +
@@ -91,13 +96,15 @@ async function google(req, res, next) {
       await newUser.save();
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password, ...rest } = newUser._doc;
+      const responsePayload = { token, ...rest };
       res
         .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
         })
-        .json(rest);
+        .json(responsePayload);
     }
+    console.log();
     // res.status(200).json({ message: "all is ok" });
   } catch (error) {
     next(error);
