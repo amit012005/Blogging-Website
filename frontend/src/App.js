@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import FooterC from "./components/FooterC";
 import toast, { Toaster } from "react-hot-toast";
 import PrivateRoute from "./components/PrivateRoute";
+import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
+import CreatePostScreen from "./screens/CreatePostScreen";
 // import dotenv from 'dotenv';
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
           <Route path="/register" element={<RegisterScreen />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          <Route element={<OnlyAdminPrivateRoute/>}>
+            <Route path="/create-post" element={<CreatePostScreen/>} />
           </Route>
         </Routes>
         <FooterC />
