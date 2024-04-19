@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePostScreen from "./screens/CreatePostScreen";
+import UpdatePost from "./screens/UpdatePost";
 // import dotenv from 'dotenv';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route element={<OnlyAdminPrivateRoute/>}>
             <Route path="/create-post" element={<CreatePostScreen/>} />
+            <Route path="/update-post/:postId" element={<UpdatePost/>} />
           </Route>
         </Routes>
         <FooterC />

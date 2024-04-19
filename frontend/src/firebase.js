@@ -5,7 +5,7 @@ import env from "react-dotenv";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-console.log(env.FIREBASE_API_KEY);
+// console.log(env.FIREBASE_API_KEY);
 const firebaseConfig = {
   apiKey: "AIzaSyBA5iZXDcwdDV4luo66K-gi6tf2WzWqgXU",
   authDomain: "blog-386e4.firebaseapp.com",
