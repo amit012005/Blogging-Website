@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import postRoute from "./routes/postRoute.js";
 
 //MONGODB Connection
 const url = process.env.MONGO_URI;
@@ -27,6 +28,7 @@ app.listen(PORT, () => {
 });
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/post", postRoute);
 
 //middleware
 app.use((err, req, res, next) => {
