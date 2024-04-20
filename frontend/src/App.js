@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePostScreen from "./screens/CreatePostScreen";
 import UpdatePost from "./screens/UpdatePost";
+import PostPage from "./screens/PostPage";
 // import dotenv from 'dotenv';
 
 function App() {
@@ -27,10 +28,11 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
-          <Route element={<OnlyAdminPrivateRoute/>}>
-            <Route path="/create-post" element={<CreatePostScreen/>} />
-            <Route path="/update-post/:postId" element={<UpdatePost/>} />
+          <Route element={<OnlyAdminPrivateRoute />}>
+            <Route path="/create-post" element={<CreatePostScreen />} />
+            <Route path="/update-post/:postId" element={<UpdatePost />} />
           </Route>
+          <Route path="/post/:postSlug" element={<PostPage />} />
         </Routes>
         <FooterC />
       </BrowserRouter>
