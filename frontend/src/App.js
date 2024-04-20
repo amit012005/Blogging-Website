@@ -12,29 +12,32 @@ import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePostScreen from "./screens/CreatePostScreen";
 import UpdatePost from "./screens/UpdatePost";
 import PostPage from "./screens/PostPage";
+import ScrollToTop from "./components/ScrollToTop";
 // import dotenv from 'dotenv';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <Toaster />
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/about" element={<AboutScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-          <Route element={<OnlyAdminPrivateRoute />}>
-            <Route path="/create-post" element={<CreatePostScreen />} />
-            <Route path="/update-post/:postId" element={<UpdatePost />} />
-          </Route>
-          <Route path="/post/:postSlug" element={<PostPage />} />
-        </Routes>
-        <FooterC />
+        <ScrollToTop/>
+          <Header />
+          <Toaster />
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/about" element={<AboutScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+            <Route element={<OnlyAdminPrivateRoute />}>
+              <Route path="/create-post" element={<CreatePostScreen />} />
+              <Route path="/update-post/:postId" element={<UpdatePost />} />
+            </Route>
+            <Route path="/post/:postSlug" element={<PostPage />} />
+          </Routes>
+          <FooterC />
+        
       </BrowserRouter>
     </>
   );
