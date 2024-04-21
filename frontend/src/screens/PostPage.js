@@ -49,7 +49,7 @@ const PostPage = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  }, []);
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen">
